@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_project/features/home/presentation/views/home_view.dart';
+import 'package:food_project/core/utils/app_router.dart';
 
 void main() {
   runApp(const MainApp());
@@ -11,8 +11,9 @@ class MainApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Homeview(),
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      routerConfig: AppRouter.goRouter,
     );
   }
 }
