@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:food_project/features/splach_scrren/presentation/view/widgets/custom_row_Animated_text.dart';
+import 'package:go_router/go_router.dart';
 
 class SplachScreenBody extends StatefulWidget {
   const SplachScreenBody({super.key});
@@ -17,9 +18,17 @@ class _SplachScreenBodyState extends State<SplachScreenBody>
   late Animation<Offset> slidingAnimtion2;
   @override
   void initState() {
-    super.initState();
     animtionForTextOne();
     animtionForText2();
+    navigatetohome();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    animationControllerForText1.dispose();
+    animationControllerForText2.dispose();
   }
 
   @override
@@ -37,39 +46,9 @@ class _SplachScreenBodyState extends State<SplachScreenBody>
             ),
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AnimatedBuilder(
-              animation: slidingAnimtion,
-              builder: (BuildContext context, Widget? child) => SlideTransition(
-                position: slidingAnimtion,
-                child: Text(
-                  'Food ',
-                  style: TextStyle(
-                      fontFamily: 'Alkatra',
-                      color: Colors.transparent.withOpacity(.3),
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            AnimatedBuilder(
-              animation: slidingAnimtion2,
-              builder: (BuildContext context, Widget? child) => SlideTransition(
-                position: slidingAnimtion2,
-                child: Text(
-                  'App',
-                  style: TextStyle(
-                      fontFamily: 'Alkatra',
-                      color: Colors.transparent.withOpacity(.3),
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ],
-        )
+        CustomRowForAnimatedToText(
+            slidingAnimtion: slidingAnimtion,
+            slidingAnimtion2: slidingAnimtion2)
       ],
     );
   }
@@ -77,7 +56,7 @@ class _SplachScreenBodyState extends State<SplachScreenBody>
   void animtionForTextOne() {
     animationControllerForText1 = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 750),
+      duration: const Duration(milliseconds: 1000),
     );
     slidingAnimtion =
         Tween<Offset>(begin: const Offset(3, 5), end: Offset(0, 0))
@@ -94,5 +73,11 @@ class _SplachScreenBodyState extends State<SplachScreenBody>
         Tween<Offset>(begin: const Offset(-3, 5), end: Offset(0, 0))
             .animate(animationControllerForText2);
     animationControllerForText2.forward();
+  }
+
+  void navigatetohome() {
+    Future.delayed(const Duration(milliseconds: 3000), () {
+      context.go('/signup');
+    });
   }
 }
