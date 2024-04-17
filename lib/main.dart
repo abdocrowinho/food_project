@@ -12,6 +12,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      theme: ThemeData(fontFamily: 'Alkatra'),
       debugShowCheckedModeBanner: false,
       routerConfig: AppRouter.goRouter,
     );

@@ -77,7 +77,7 @@ class _SplachScreenBodyState extends State<SplachScreenBody>
 
   void navigatetohome() {
     Future.delayed(const Duration(milliseconds: 3000), () {
-      context.go('/signup');
+      context.go('/onboarding');
     });
   }
 }
