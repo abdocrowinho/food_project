@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:food_project/core/utils/routs.dart';
 import 'package:food_project/features/auth/login/presentation/views/widgets/custom_Login_button.dart';
 import 'package:food_project/features/auth/login/presentation/views/widgets/custom_cover_login.dart';
 import 'package:food_project/features/auth/login/presentation/views/widgets/custom_row_Text_With_TextButton_Login.dart';
 import 'package:food_project/features/auth/login/presentation/views/widgets/custom_text_from_Field_password_Login.dart';
 
 import 'package:food_project/features/auth/signUp/presentation/views/widgets/Custom_text_from_field_Email.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
@@ -60,6 +62,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   CustomLoginButton(
                     tittle: 'Login',
                     onPressed: () {
+                      GoRouter.of(context).push(Routs.bottomNavBar);
                       formkey.currentState!.validate();
                     },
                   )
@@ -68,7 +71,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             ),
           ),
           const SizedBox(
-            height: 5,
+            height: 100,
           ),
           const CustomRowWithSignUpTextButton(
             tittel: 'signup now',

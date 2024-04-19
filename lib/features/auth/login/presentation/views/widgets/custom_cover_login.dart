@@ -46,7 +46,7 @@ class CustomCoverLoginScreen extends StatelessWidget {
               ),
             )),
         Positioned(
-            right: MediaQuery.of(context).size.width * .5 - 50,
+            right: MediaQuery.of(context).size.width * .5 - 30,
             top: 150,
             child: const Text(
               'Login',

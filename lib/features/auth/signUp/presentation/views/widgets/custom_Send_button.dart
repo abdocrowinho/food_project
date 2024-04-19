@@ -19,7 +19,7 @@ class CustomSendButton extends StatelessWidget {
         textStyle: const TextStyle(fontSize: 17),
       ),
       child: const Text(
-        'Password',
+        'Send',
         style: AppStyels.style1,
       ),
     );
