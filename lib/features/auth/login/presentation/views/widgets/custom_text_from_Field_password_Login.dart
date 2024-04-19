@@ -2,36 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:food_project/core/utils/colors.dart';
 
-class CustomPasswordTextFromField extends StatefulWidget {
-  const CustomPasswordTextFromField({
+class CustomPasswordTextFromFieldLogin extends StatefulWidget {
+  const CustomPasswordTextFromFieldLogin({
     super.key,
-    required this.validator,
     this.controller,
   });
 
-  final String? Function(String?)? validator;
   final TextEditingController? controller;
 
   @override
-  State<CustomPasswordTextFromField> createState() =>
-      _CustomPasswordTextFromFieldState();
+  State<CustomPasswordTextFromFieldLogin> createState() =>
+      _CustomPasswordTextFromFieldLoginState();
 }
 
-class _CustomPasswordTextFromFieldState
-    extends State<CustomPasswordTextFromField> {
+class _CustomPasswordTextFromFieldLoginState
+    extends State<CustomPasswordTextFromFieldLogin> {
   bool isRedEyeClick = true;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      validator: widget.validator,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Password is Required';
+        } else {
+          return null;
+        }
+      },
       controller: widget.controller,
       obscureText: isRedEyeClick,
       cursorHeight: 25,
       cursorColor: MyColors.kcolors3,
       decoration: InputDecoration(
         suffixIcon: eyeiconbutton(isEyeClicked: isRedEyeClick),
-        hintText: 'enter Your Password',
+        hintText: "Enter Your Password",
         hintStyle: TextStyle(color: MyColors.kcolors3.withOpacity(.5)),
         label: const Padding(
           padding: EdgeInsets.only(left: 10, right: 10),

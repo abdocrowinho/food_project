@@ -3,10 +3,15 @@ import 'package:food_project/core/utils/colors.dart';
 
 class CustomTextFromFieldEmail extends StatelessWidget {
   const CustomTextFromFieldEmail(
-      {super.key, required this.textcontroller, required this.onChanged});
+      {super.key,
+      required this.hint,
+      required this.label,
+      required this.textcontroller,
+      required this.onChanged});
   final void Function(String)? onChanged;
   final TextEditingController textcontroller;
-
+  final String hint;
+  final String label;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -16,13 +21,13 @@ class CustomTextFromFieldEmail extends StatelessWidget {
       onChanged: onChanged,
       cursorColor: MyColors.kcolors3,
       decoration: InputDecoration(
-        hintText: 'Email@gmail.com',
+        hintText: hint,
         hintStyle: TextStyle(color: MyColors.kcolors3.withOpacity(.5)),
-        label: const Padding(
-          padding: EdgeInsets.only(left: 10, right: 10),
+        label: Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
           child: Text(
-            'Enter Your Email',
-            style: TextStyle(color: MyColors.kcolors3),
+            label,
+            style: const TextStyle(color: MyColors.kcolors3),
           ),
         ),
         border: colorForborderHasNoError(),

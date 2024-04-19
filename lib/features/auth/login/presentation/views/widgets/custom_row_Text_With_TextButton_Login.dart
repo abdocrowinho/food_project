@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:food_project/core/utils/colors.dart';
 import 'package:go_router/go_router.dart';
 
-class CustomLoginNowButton extends StatelessWidget {
-  const CustomLoginNowButton({
+class CustomRowWithSignUpTextButton extends StatelessWidget {
+  const CustomRowWithSignUpTextButton({
     super.key,
     required this.tittel,
   });
@@ -22,7 +22,7 @@ class CustomLoginNowButton extends StatelessWidget {
             style: TextButton.styleFrom(
                 elevation: 0, padding: const EdgeInsets.all(5)),
             onPressed: () {
-              GoRouter.of(context).push('/login');
+              GoRouter.of(context).pop();
             },
             child: Text(
               tittel,
