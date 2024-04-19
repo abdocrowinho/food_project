@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:food_project/core/styels.dart';
 import 'package:food_project/core/utils/colors.dart';
 
-class CustomSendButton extends StatelessWidget {
-  const CustomSendButton({super.key, required this.onPressed});
-
+class CustomLoginButton extends StatelessWidget {
+  const CustomLoginButton(
+      {super.key, required this.tittle, required this.onPressed});
+  final String tittle;
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
@@ -18,8 +19,8 @@ class CustomSendButton extends StatelessWidget {
         ),
         textStyle: const TextStyle(fontSize: 17),
       ),
-      child: const Text(
-        'Password',
+      child: Text(
+        tittle,
         style: AppStyels.style1,
       ),
     );

@@ -3,15 +3,10 @@ import 'package:food_project/core/utils/colors.dart';
 
 class CustomTextFromField extends StatelessWidget {
   const CustomTextFromField(
-      {super.key,
-      required this.hint,
-      required this.label,
-      required this.textcontroller,
-      required this.onChanged});
+      {super.key, required this.textcontroller, required this.onChanged});
   final void Function(String)? onChanged;
   final TextEditingController textcontroller;
-  final String hint;
-  final String label;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -28,13 +23,13 @@ class CustomTextFromField extends StatelessWidget {
       onChanged: onChanged,
       cursorColor: MyColors.kcolors3,
       decoration: InputDecoration(
-        hintText: hint,
+        hintText: 'Enter Your name',
         hintStyle: TextStyle(color: MyColors.kcolors3.withOpacity(.5)),
-        label: Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10),
+        label: const Padding(
+          padding: EdgeInsets.only(left: 10, right: 10),
           child: Text(
-            label,
-            style: const TextStyle(color: MyColors.kcolors3),
+            'User Name',
+            style: TextStyle(color: MyColors.kcolors3),
           ),
         ),
         border: colorForborderHasNoError(),

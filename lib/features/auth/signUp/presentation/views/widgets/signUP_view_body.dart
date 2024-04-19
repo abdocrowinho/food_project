@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:food_project/core/utils/colors.dart';
-import 'package:food_project/features/auth/signUp/presentation/views/widgets/Custom_row_Text_With_TextButton.dart';
+
 import 'package:food_project/features/auth/signUp/presentation/views/widgets/Custom_text_from_field_Email.dart';
 import 'package:food_project/features/auth/signUp/presentation/views/widgets/Cutom_Text_From_Faild.dart';
 import 'package:food_project/features/auth/signUp/presentation/views/widgets/custom_Send_button.dart';
 import 'package:food_project/features/auth/signUp/presentation/views/widgets/custom_cover.dart';
 import 'package:food_project/features/auth/signUp/presentation/views/widgets/custom_text_from_Field_password.dart';
+import 'package:food_project/features/auth/signUp/presentation/views/widgets/custom_row_Text_With_TextButton.dart';
 
 class SignViewBody extends StatefulWidget {
   const SignViewBody({super.key});
@@ -38,8 +38,6 @@ class _SignViewBodyState extends State<SignViewBody> {
               child: Column(
                 children: [
                   CustomTextFromField(
-                    hint: 'Enter Your name',
-                    label: 'User Name',
                     textcontroller: textEditingController,
                     onChanged: (valu) {
                       textEditingController.text = valu;
@@ -49,8 +47,6 @@ class _SignViewBodyState extends State<SignViewBody> {
                     height: 20,
                   ),
                   CustomTextFromFieldEmail(
-                    hint: 'Email@gmail.com',
-                    label: 'Enter Your Email',
                     textcontroller: emailEditingController,
                     onChanged: (value) {
                       emailEditingController.text = value;
@@ -61,23 +57,18 @@ class _SignViewBodyState extends State<SignViewBody> {
                   ),
                   CustomPasswordTextFromField(
                     controller: passworEditingController,
-                    hint: 'enter Your Password',
-                    label: 'Password',
                     validator: passwordValidation,
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   CustomPasswordTextFromField(
-                    hint: 'enter Your Password Again',
-                    label: 'Confirm Password',
                     validator: confirmPasswordValidation,
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   CustomSendButton(
-                    tittle: 'Send',
                     onPressed: () {
                       formkey.currentState!.validate();
                     },
@@ -89,7 +80,9 @@ class _SignViewBodyState extends State<SignViewBody> {
           const SizedBox(
             height: 5,
           ),
-          const CustomRowWithTextButton()
+          const CustomLoginNowButton(
+            tittel: 'Login Now',
+          )
         ],
       ),
     );
