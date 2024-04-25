@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_project/features/bottom_Nav_Bar/Cutsom_Navbar_Elment.dart';
+import 'package:food_project/features/bottom_Nav_Bar/Lists_For_Elment.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
   const CustomBottomNavBar({super.key});
@@ -28,7 +29,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
             ],
             borderRadius: BorderRadius.circular(16)),
         child: ListView.builder(
-          itemCount: body.length,
+          itemCount: ListForElment.body.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) => InkWell(
               splashColor: Colors.transparent,
@@ -46,7 +47,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
               )),
         ),
       ),
-      body: body[currentindex],
+      body: ListForElment.body[currentindex],
     );
   }
 }

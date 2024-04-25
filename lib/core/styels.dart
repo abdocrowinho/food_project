@@ -7,4 +7,5 @@ class AppStyels {
       fontFamily: 'Alkatra',
       color: MyColors.kcolors0,
       fontWeight: FontWeight.bold);
+  static const style2 = TextStyle(fontSize: 18);
 }
