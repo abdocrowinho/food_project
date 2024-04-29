@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_project/core/styels.dart';
+import 'package:food_project/core/utils/styels.dart';
 import 'package:food_project/core/utils/colors.dart';
 
 class CustomSendButton extends StatelessWidget {

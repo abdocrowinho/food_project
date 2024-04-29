@@ -24,7 +24,7 @@ class BuildCategories extends StatelessWidget {
       height: 85.h,
       margin: EdgeInsets.symmetric(vertical: 10.h),
       decoration: const BoxDecoration(
-        color: Color(0xffFFFFFF),
+        color: MyColors.kContainercolor,
         borderRadius: BorderRadius.only(
             topRight: Radius.circular(40),
             topLeft: Radius.circular(40),
@@ -37,7 +37,7 @@ class BuildCategories extends StatelessWidget {
           CircleAvatar(
             maxRadius: 28,
             minRadius: 10,
-            backgroundColor: const Color(0xffE4F4EA),
+            backgroundColor: MyColors.backgroundItems,
             child: AspectRatio(
               aspectRatio: 3 / 2,
               child: Image.asset(

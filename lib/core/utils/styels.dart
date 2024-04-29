@@ -8,4 +8,5 @@ class AppStyels {
       color: MyColors.kcolors0,
       fontWeight: FontWeight.bold);
   static const style2 = TextStyle(fontSize: 18);
+  static const style3 = TextStyle(fontWeight: FontWeight.w600, fontSize: 18);
 }

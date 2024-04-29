@@ -9,10 +9,9 @@ class CustomSearchTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      
       height: 55,
       decoration: BoxDecoration(
-          color: Colors.white,
+          color: MyColors.kContainercolor,
           borderRadius: BorderRadius.circular(40)),
       /////////////////////////
       child: TextField(

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:food_project/core/utils/colors.dart';
+import 'package:food_project/features/details_view/presentation/views/widgets/Details_View_Body.dart';
 
-class detailsView extends StatelessWidget {
-  const detailsView({super.key});
+class DetailsView extends StatelessWidget {
+  const DetailsView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Text('this is details scrren'),
+      backgroundColor: MyColors.kscaffoldColor,
+      body: DetailsViewBody(),
     );
   }
 }

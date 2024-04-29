@@ -16,13 +16,9 @@ class HomeViewBody extends StatelessWidget {
       slivers: [
         CustomAppBar(),
         CustomAdCard(),
-        TittleText(
-          text: 'Categories',
-        ),
+        TittleText(text: 'Categories'),
         BuildCategories(),
-        TittleText(
-          text: 'Popular',
-        ),
+        TittleText(text: 'Popular'),
         BuildPopuler()
       ],
     );

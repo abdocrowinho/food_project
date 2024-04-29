@@ -65,7 +65,7 @@ class _CustomPasswordTextFromFieldLoginState
           setState(() {});
         },
         icon: const Icon(
-          FontAwesomeIcons.eyeSlash,
+          FontAwesomeIcons.eye,
           size: 15,
         ),
       );
@@ -76,7 +76,7 @@ class _CustomPasswordTextFromFieldLoginState
           setState(() {});
         },
         icon: const Icon(
-          FontAwesomeIcons.eye,
+          FontAwesomeIcons.eyeSlash,
           size: 15,
         ),
       );

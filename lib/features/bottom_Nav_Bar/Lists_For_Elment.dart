@@ -6,10 +6,10 @@ import 'package:food_project/features/profile_view/presentation/views/Profile_vi
 
 abstract class ListForElment {
   static const List<IconData> listoficon = [
-    Icons.abc,
-    Icons.ac_unit_sharp,
-    Icons.accessible_sharp,
-    Icons.add_alarm_sharp
+    Icons.home,
+    Icons.favorite_border,
+    Icons.shopping_cart_outlined,
+    Icons.person
   ];
   static const List<String> iconlabel = ['Home', 'favorite', 'Cart', 'Profile'];
   static const List<Widget> body = [

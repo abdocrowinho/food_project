@@ -4,4 +4,5 @@ abstract class Routs {
   static const signup = '/signup';
   static const onboarding = '/onboarding';
   static const bottomNavBar = '/BottomNavBar';
+  static const details = '/details';
 }
