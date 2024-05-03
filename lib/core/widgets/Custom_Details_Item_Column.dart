@@ -37,6 +37,9 @@ class DetailsItemColumn extends StatelessWidget {
           SizedBox(
             height: spaceBetween ?? 3.h,
           ),
+          SizedBox(
+            height: spaceBetween ?? 3.h,
+          ),
           CustomPriceTextSpan(
             textPriceSize: textPriceSize,
             text: '1.22',
