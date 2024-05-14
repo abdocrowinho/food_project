@@ -22,11 +22,11 @@ class _CustomCounterCartState extends State<CustomCounterCart> {
       children: [
         minusButton(),
         SizedBox(
-          width: widget.spaceBetween ?? 7.w,
+          width: counter <= 9 ? widget.spaceBetween ?? 7.w : 5,
         ),
         Text('${counter.toString()} KG'),
         SizedBox(
-          width: widget.spaceBetween ?? 7.w,
+          width: counter <= 9 ? widget.spaceBetween ?? 7.w : 5,
         ),
         plusButton()
       ],

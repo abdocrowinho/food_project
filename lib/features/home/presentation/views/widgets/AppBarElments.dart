@@ -15,6 +15,7 @@ class AppBarElments extends StatelessWidget {
     return Column(
       children: [
         const AppBarActions(
+          bars: true,
           text: "Location",
           iconData: Icons.location_on_outlined,
         ),

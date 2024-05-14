@@ -15,6 +15,7 @@ class CustomAppBarCart extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(8.w, 50.h, 8.w, 20.h),
         decoration: const BoxDecoration(color: MyColors.kcolors3),
         child: const AppBarActions(
+          bars: false,
           text: 'CART      ',
         ),
       ),

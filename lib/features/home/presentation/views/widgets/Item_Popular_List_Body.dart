@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_project/features/home/presentation/views/widgets/Bulid_populer.dart';
 import 'package:food_project/core/widgets/Custom_Details_Item_Column.dart';
 import 'package:food_project/features/home/presentation/views/widgets/Custom_Favorite_Icon.dart';
 

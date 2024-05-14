@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_project/core/utils/colors.dart';
 import 'package:food_project/features/details_view/presentation/views/widgets/CustomDetailsAppBar.dart';
 import 'package:food_project/features/details_view/presentation/views/widgets/CustomRowWithDetailsAndCounter.dart';
 import 'package:food_project/features/details_view/presentation/views/widgets/List_Tile.dart';

@@ -9,10 +9,13 @@ class AppBarIcon extends StatelessWidget {
     required this.iconData,
     this.iconColor,
     this.backGroundColor,
+    this.ontap,
   });
+
   final IconData iconData;
   final Color? iconColor;
   final Color? backGroundColor;
+  final VoidCallback? ontap;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,9 +25,10 @@ class AppBarIcon extends StatelessWidget {
             color: backGroundColor ?? Colors.white.withOpacity(.2),
             borderRadius: BorderRadius.circular(50)),
         child: IconButton(
-            onPressed: () {
-              (context).pop();
-            },
+            onPressed: ontap ??
+                () {
+                  (context).pop();
+                },
             icon: Icon(
               color: iconColor ?? MyColors.kContainercolor,
               iconData,

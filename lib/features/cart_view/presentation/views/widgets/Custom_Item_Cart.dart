@@ -23,7 +23,7 @@ class CustomItemCart extends StatelessWidget {
           const CustomItemImage(),
           const CustomDetailsItemCart(),
           Padding(
-            padding: EdgeInsets.fromLTRB(80.w, 27.h, 0.w, 0.h),
+            padding: EdgeInsets.fromLTRB(75.w, 27.h, 0.w, 0.h),
             child: const CustomCounterCart(),
           )
         ],
