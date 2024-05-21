@@ -6,9 +6,11 @@ class CustomPasswordTextFromFieldLogin extends StatefulWidget {
   const CustomPasswordTextFromFieldLogin({
     super.key,
     this.controller,
+    required this.onchange,
   });
 
   final TextEditingController? controller;
+  final void Function(String) onchange;
 
   @override
   State<CustomPasswordTextFromFieldLogin> createState() =>
@@ -29,6 +31,7 @@ class _CustomPasswordTextFromFieldLoginState
           return null;
         }
       },
+      onChanged: widget.onchange,
       controller: widget.controller,
       obscureText: isRedEyeClick,
       cursorHeight: 25,

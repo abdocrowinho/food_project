@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:food_project/core/utils/routs.dart';
 import 'package:food_project/features/splach_scrren/presentation/view/widgets/custom_row_Animated_text.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplachScreenBody extends StatefulWidget {
   const SplachScreenBody({super.key});
@@ -26,9 +28,9 @@ class _SplachScreenBodyState extends State<SplachScreenBody>
 
   @override
   void dispose() {
-    super.dispose();
     animationControllerForText1.dispose();
     animationControllerForText2.dispose();
+    super.dispose();
   }
 
   @override
@@ -76,8 +78,17 @@ class _SplachScreenBodyState extends State<SplachScreenBody>
   }
 
   void navigatetohome() {
-    Future.delayed(const Duration(milliseconds: 3000), () {
-      context.go('/onboarding');
+    Future.delayed(const Duration(milliseconds: 3000), () async {
+      SharedPreferences Pref = await SharedPreferences.getInstance();
+      if (Pref.getBool('isViewed') == true) {
+        if (Pref.getBool('isLogedIn') == true) {
+          context.go(Routs.bottomNavBar);
+        } else {
+          context.go(Routs.login);
+        }
+      } else {
+        context.go('/onboarding');
+      }
     });
   }
 }

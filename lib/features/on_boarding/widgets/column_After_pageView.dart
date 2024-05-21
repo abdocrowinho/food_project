@@ -35,7 +35,9 @@ class CustomColumnAfterPageView extends StatelessWidget {
         _currentPage + 1 == onBoradingDisplay.length
             ? Padding(
                 padding: const EdgeInsets.all(30),
-                child: CustomStartButton(width: width),
+                child: CustomStartButton(
+                  width: width,
+                ),
               )
             : Padding(
                 padding: const EdgeInsets.all(30),

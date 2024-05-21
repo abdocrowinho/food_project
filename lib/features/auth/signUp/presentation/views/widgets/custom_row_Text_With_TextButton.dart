@@ -22,7 +22,7 @@ class CustomLoginNowButton extends StatelessWidget {
             style: TextButton.styleFrom(
                 elevation: 0, padding: const EdgeInsets.all(5)),
             onPressed: () {
-              GoRouter.of(context).push('/login');
+              GoRouter.of(context).pop();
             },
             child: Text(
               tittel,

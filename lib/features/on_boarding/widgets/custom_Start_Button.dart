@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:food_project/core/utils/routs.dart';
 import 'package:food_project/core/utils/styels.dart';
 import 'package:food_project/core/utils/colors.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomStartButton extends StatelessWidget {
   const CustomStartButton({
@@ -14,8 +16,13 @@ class CustomStartButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {
-        (context).go('/signup');
+      onPressed: () async {
+        SharedPreferences preferences = await SharedPreferences.getInstance();
+        preferences.setBool("isViewed", true);
+        context.go(Routs.signup);
+        print(
+          preferences.getBool("isViewed"),
+        );
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: MyColors.kcolors3,

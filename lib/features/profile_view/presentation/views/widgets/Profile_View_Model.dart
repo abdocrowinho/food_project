@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:food_project/core/utils/routs.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileViewForm {
   final String profileoption;
@@ -49,8 +51,11 @@ class ProfileViewModel {
       // Notification
       () {},
       //Log Out
-      () {
-        GoRouter.of(context).pop();
+      () async {
+        await FirebaseAuth.instance.signOut();
+        SharedPreferences pref = await SharedPreferences.getInstance();
+        pref.setBool("isLogedIn", false);
+        context.go(Routs.login);
       }
     ];
     return onTap[i];

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_project/core/utils/colors.dart';
+import 'package:food_project/core/utils/routs.dart';
 import 'package:go_router/go_router.dart';
 
 class CustomRowWithSignUpTextButton extends StatelessWidget {
@@ -22,7 +23,7 @@ class CustomRowWithSignUpTextButton extends StatelessWidget {
             style: TextButton.styleFrom(
                 elevation: 0, padding: const EdgeInsets.all(5)),
             onPressed: () {
-              GoRouter.of(context).pop();
+              GoRouter.of(context).push(Routs.signup);
             },
             child: Text(
               tittel,

@@ -7,10 +7,12 @@ class CustomPasswordTextFromField extends StatefulWidget {
     super.key,
     required this.validator,
     this.controller,
+    this.onChanged,
   });
 
   final String? Function(String?)? validator;
   final TextEditingController? controller;
+  final void Function(String)? onChanged;
 
   @override
   State<CustomPasswordTextFromField> createState() =>
@@ -24,6 +26,7 @@ class _CustomPasswordTextFromFieldState
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: widget.onChanged,
       validator: widget.validator,
       controller: widget.controller,
       obscureText: isRedEyeClick,
