@@ -10,7 +10,7 @@ final class SignInSuccess extends AuthState {}
 final class SignInLoading extends AuthState {}
 
 final class SignInFailure extends AuthState {
-  String errorMessage;
+  final String errorMessage;
   SignInFailure(this.errorMessage);
 }
 
@@ -19,6 +19,6 @@ final class RegisterSuccsess extends AuthState {}
 final class RegisterLoading extends AuthState {}
 
 final class RegisterFailure extends AuthState {
-  String errorMessage;
+  final String errorMessage;
   RegisterFailure(this.errorMessage);
 }

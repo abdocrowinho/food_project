@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:food_project/features/auth/data/web_Services/AuthRepoImpl.dart';
+import 'package:food_project/features/auth/view_model/models/User_Model.dart';
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,8 +17,10 @@ class AuthCubit extends Cubit<AuthState> {
   TextEditingController passworEditingController = TextEditingController();
   TextEditingController logEmailEditingController = TextEditingController();
   TextEditingController logPassworEditingController = TextEditingController();
-  UserCredential? _userCredential;
+  TextEditingController img = TextEditingController();
 
+  UserCredential? _userCredential;
+  var Userdata;
   Future<void> register() async {
     emit(RegisterLoading());
     try {
@@ -24,7 +28,7 @@ class AuthCubit extends Cubit<AuthState> {
           .createUserWithEmailAndPassword(
               email: emailEditingController.text,
               password: passworEditingController.text);
-
+      addUserToFireBase();
       emit(RegisterSuccsess());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -45,6 +49,7 @@ class AuthCubit extends Cubit<AuthState> {
           password: logPassworEditingController.text);
       SharedPreferences pref = await SharedPreferences.getInstance();
       pref.setBool('isLogedIn', true);
+      AuthRepoImpl().getUserFromdFireBase(_userCredential!.user!.uid);
       emit(SignInSuccess());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -56,5 +61,11 @@ class AuthCubit extends Cubit<AuthState> {
         print(e.code);
       }
     }
+  }
+
+  void addUserToFireBase() {
+    final userModel = UserModel(
+        name: userName.text, email: emailEditingController.text, img: img.text);
+    AuthRepoImpl().saveUserToFirestore(userModel);
   }
 }

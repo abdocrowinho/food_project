@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_project/core/utils/colors.dart';
-import 'package:food_project/features/splach_scrren/presentation/view/widgets/splash_screen_body.dart';
+import 'package:food_project/features/splach_view/view/widgets/splash_screen_body.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

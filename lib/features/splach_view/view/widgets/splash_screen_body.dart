@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:food_project/core/utils/routs.dart';
-import 'package:food_project/features/splach_scrren/presentation/view/widgets/custom_row_Animated_text.dart';
+import 'package:food_project/features/splach_view/view/widgets/custom_row_Animated_text.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

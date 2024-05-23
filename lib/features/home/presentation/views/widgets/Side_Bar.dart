@@ -1,12 +1,29 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_project/core/utils/colors.dart';
+import 'package:food_project/features/auth/data/web_Services/AuthRepoImpl.dart';
 import 'package:food_project/features/home/presentation/views/widgets/List_of_options_for_SideBar.dart';
 
-class CustomSideBar extends StatelessWidget {
+class CustomSideBar extends StatefulWidget {
   const CustomSideBar({
     super.key,
   });
+
+  @override
+  State<CustomSideBar> createState() => _CustomSideBarState();
+}
+
+class _CustomSideBarState extends State<CustomSideBar> {
+  String username = ' ';
+  String Email = '';
+
+  @override
+  void initState() {
+    setState(() {});
+    getdataFromFireBase();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +34,9 @@ class CustomSideBar extends StatelessWidget {
             height: 200,
             padding: EdgeInsets.symmetric(vertical: 20.h),
             decoration: const BoxDecoration(color: MyColors.kcolors3),
-            child: const Column(
+            child: Column(
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 40,
                   backgroundImage: AssetImage("assets/profilepicture.jpg"),
                 ),
@@ -27,13 +44,15 @@ class CustomSideBar extends StatelessWidget {
                   child: ListTile(
                     titleAlignment: ListTileTitleAlignment.center,
                     title: Text(
-                      'Abdelrahman osama ',
+                      username,
                       textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      style: TextStyle(
+                          color: Colors.black.withOpacity(.5),
+                          fontWeight: FontWeight.normal,
+                          fontSize: 20),
                     ),
                     subtitle: Text(
-                      'Ahlyua@gmail.com',
+                      Email,
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 16),
                     ),
@@ -49,5 +68,15 @@ class CustomSideBar extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void getdataFromFireBase() async {
+    final user = FirebaseAuth.instance.currentUser;
+    final userId = user!.uid;
+    final userData = await AuthRepoImpl().getUserFromdFireBase(userId);
+    setState(() {
+      username = userData.name;
+      Email = userData.email;
+    });
   }
 }
