@@ -1,12 +1,11 @@
 import 'dart:io';
-import 'dart:typed_data';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_project/features/auth/view_model/cubit/Auth_cubit/auth_cubit.dart';
 import 'package:path/path.dart' as p;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_project/features/auth/data/web_Services/AuthRepoImpl.dart';
-import 'package:food_project/features/auth/view_model/cubit/Auth_cubit/auth_cubit.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CustomProfileInformtion extends StatefulWidget {
@@ -21,6 +20,7 @@ class CustomProfileInformtion extends StatefulWidget {
 
 class _CustomProfileInformtionState extends State<CustomProfileInformtion> {
   File? _file;
+  String url = '';
 
   getImage() async {
     ImagePicker _imagePickerFormGallry = ImagePicker();
@@ -29,12 +29,13 @@ class _CustomProfileInformtionState extends State<CustomProfileInformtion> {
     if (imagegallry == null) {
       return null;
     }
-
     _file = File(imagegallry.path);
+    UploadTask? uploadTask;
     var pathimage = p.basename(imagegallry.path);
-    var ref = FirebaseStorage.instance.ref("");
-    ref.putData(await _file!.readAsBytes());
-    BlocProvider.of<AuthCubit>(context).img.text = await ref.getDownloadURL();
+    var ref = FirebaseStorage.instance.ref(pathimage);
+    uploadTask = ref.putData(await _file!.readAsBytes());
+    BlocProvider.of<AuthCubit>(context).img.text =
+        await (await uploadTask).ref.getDownloadURL();
 
     setState(() {});
   }
@@ -53,7 +54,9 @@ class _CustomProfileInformtionState extends State<CustomProfileInformtion> {
     return Row(
       children: [
         InkWell(
-          onTap: getImage,
+          onTap: () async {
+            await getImage();
+          },
           child: CircleAvatar(
             radius: 60,
             backgroundImage: AssetImage("assets/profilepicture.jpg"),
