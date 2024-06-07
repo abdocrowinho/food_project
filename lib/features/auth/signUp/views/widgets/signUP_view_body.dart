@@ -31,7 +31,7 @@ class _SignViewBodyState extends State<SignViewBody> {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is RegisterSuccsess) {
-          GoRouter.of(context).go(Routs.login);
+          GoRouter.of(context).go(Routs.takeimage);
           isLoading = false;
           return showsnackbar(context, 'Register Succsesfuly  ');
         } else if (state is RegisterFailure) {

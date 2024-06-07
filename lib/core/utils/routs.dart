@@ -6,4 +6,5 @@ abstract class Routs {
   static const bottomNavBar = '/BottomNavBar';
   static const details = '/details';
   static const catgory = '/Category';
+  static const takeimage = '/takeImage';
 }

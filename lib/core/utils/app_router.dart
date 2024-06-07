@@ -3,6 +3,8 @@ import 'package:food_project/core/utils/routs.dart';
 import 'package:food_project/features/Category_View/presentation/view/category_view.dart';
 import 'package:food_project/features/auth/login/views/login_view.dart';
 import 'package:food_project/features/auth/signUp/views/signup_view.dart';
+import 'package:food_project/features/auth/takeImage_View/takeImage_view.dart';
+import 'package:food_project/features/auth/takeImage_View/view_model/cubit/Take_image_Cubit/take_image_cubit.dart';
 import 'package:food_project/features/bottom_Nav_Bar/menu_Bar.dart';
 import 'package:food_project/features/details_view/presentation/views/details_View.dart';
 import 'package:food_project/features/home/presentation/view_model/cubit/main_home_cupit_cubit.dart';
@@ -55,6 +57,13 @@ abstract class AppRouter {
             model: catgoryModel,
           );
         },
+      ),
+      GoRoute(
+        path: Routs.takeimage,
+        builder: (context, state) => BlocProvider(
+          create: (context) => TakeImageCubit(),
+          child: const TakeImageVirw(),
+        ),
       ),
     ],
   );

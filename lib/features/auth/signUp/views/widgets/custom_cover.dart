@@ -4,8 +4,9 @@ import 'package:food_project/core/utils/colors.dart';
 class CustomCoverSignUpScreen extends StatelessWidget {
   const CustomCoverSignUpScreen({
     super.key,
+    this.text,
   });
-
+  final String? text;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -48,8 +49,8 @@ class CustomCoverSignUpScreen extends StatelessWidget {
         Positioned(
             right: MediaQuery.of(context).size.width * .5 - 50,
             top: 150,
-            child: const Text(
-              'SignUP',
+            child: Text(
+              text ?? 'SignUp',
               style: TextStyle(
                   color: MyColors.kcolors0,
                   fontSize: 30,

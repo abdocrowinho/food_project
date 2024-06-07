@@ -15,7 +15,7 @@ class CustomRowWithSignUpTextButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(
-          '    Alradey Have An Email',
+          "    i don't Have An Email",
           style:
               TextStyle(color: MyColors.kcolors3.withOpacity(.8), fontSize: 13),
         ),

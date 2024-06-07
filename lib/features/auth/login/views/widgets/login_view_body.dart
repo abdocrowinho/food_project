@@ -29,14 +29,15 @@ class _LoginViewBodyState extends State<LoginViewBody> {
     var _authCubit = BlocProvider.of<AuthCubit>(context);
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
-        if (state is SignInLoading) {
-          isloading = true;
-        } else if (state is SignInSuccess) {
+        if (state is SignInSuccess) {
           isloading = false;
           GoRouter.of(context).go(Routs.bottomNavBar);
-        } else if (state is SignInFailure) {
+        }
+        if (state is SignInFailure) {
           isloading = false;
           showsnackbar(context, state.errorMessage);
+        } else {
+          isloading = true;
         }
       },
       child: ModalProgressHUD(
