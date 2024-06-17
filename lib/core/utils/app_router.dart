@@ -11,6 +11,8 @@ import 'package:food_project/features/home/presentation/view_model/cubit/main_ho
 import 'package:food_project/features/home/presentation/views/home_view.dart';
 import 'package:food_project/features/home/presentation/views/widgets/Catgory_model.dart';
 import 'package:food_project/features/on_boarding/onboarding_view.dart';
+import 'package:food_project/features/profile_view/presentation/view_model/cubits/profile_cupits/profile_cubit.dart';
+import 'package:food_project/features/profile_view/presentation/views/Profile_view.dart';
 import 'package:food_project/features/splach_view/view/splash_Screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -40,6 +42,13 @@ abstract class AppRouter {
       GoRoute(
         path: Routs.onboarding,
         builder: (context, state) => const OnBoardingView(),
+      ),
+      GoRoute(
+        path: Routs.profile,
+        builder: (context, state) => BlocProvider(
+          create: (context) => ProfileCubit(),
+          child: const ProfileView(),
+        ),
       ),
       GoRoute(
         path: Routs.bottomNavBar,

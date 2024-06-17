@@ -27,7 +27,7 @@ class _SignViewBodyState extends State<SignViewBody> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    var _AuthCupit = BlocProvider.of<AuthCubit>(context);
+    var AuthCupit = BlocProvider.of<AuthCubit>(context);
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is RegisterSuccsess) {
@@ -38,7 +38,7 @@ class _SignViewBodyState extends State<SignViewBody> {
           isLoading = false;
           return showsnackbar(context, state.errorMessage);
         } else if (state is RegisterLoading) {
-          isLoading = false;
+          isLoading = true;
         }
       },
       builder: (context, state) {
@@ -60,18 +60,18 @@ class _SignViewBodyState extends State<SignViewBody> {
                     child: Column(
                       children: [
                         CustomTextFromField(
-                          textcontroller: _AuthCupit.userName,
+                          textcontroller: AuthCupit.userName,
                           onChanged: (valu) {
-                            _AuthCupit.userName.text = valu;
+                            AuthCupit.userName.text = valu;
                           },
                         ),
                         const SizedBox(
                           height: 20,
                         ),
                         CustomTextFromFieldEmail(
-                          textcontroller: _AuthCupit.emailEditingController,
+                          textcontroller: AuthCupit.emailEditingController,
                           onChanged: (value) {
-                            _AuthCupit.emailEditingController.text = value;
+                            AuthCupit.emailEditingController.text = value;
                           },
                         ),
                         const SizedBox(
@@ -79,9 +79,9 @@ class _SignViewBodyState extends State<SignViewBody> {
                         ),
                         CustomPasswordTextFromField(
                           onChanged: (value) {
-                            _AuthCupit.passworEditingController.text = value;
+                            AuthCupit.passworEditingController.text = value;
                           },
-                          controller: _AuthCupit.passworEditingController,
+                          controller: AuthCupit.passworEditingController,
                           validator: passwordValidation,
                         ),
                         const SizedBox(

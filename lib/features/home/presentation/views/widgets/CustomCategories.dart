@@ -1,10 +1,5 @@
-import 'dart:ui';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_project/core/utils/app_router.dart';
 import 'package:food_project/core/utils/colors.dart';
 import 'package:food_project/core/utils/routs.dart';
 import 'package:food_project/features/home/presentation/views/widgets/Catgory_model.dart';

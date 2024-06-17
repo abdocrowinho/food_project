@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_project/core/utils/app_router.dart';
 import 'package:food_project/core/utils/colors.dart';
+import 'package:food_project/features/auth/takeImage_View/view_model/cubit/Take_image_Cubit/take_image_cubit.dart';
 import 'package:food_project/features/auth/view_model/cubit/Auth_cubit/auth_cubit.dart';
 import 'package:food_project/firebase_options.dart';
 
@@ -25,8 +26,15 @@ class MainApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return BlocProvider(
-            create: (context) => AuthCubit(),
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => AuthCubit(),
+              ),
+              BlocProvider(
+                create: (context) => TakeImageCubit(),
+              )
+            ],
             child: MaterialApp.router(
                 theme: ThemeData(
                   fontFamily: 'Alkatra',

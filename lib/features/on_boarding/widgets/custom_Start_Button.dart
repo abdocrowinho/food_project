@@ -19,7 +19,7 @@ class CustomStartButton extends StatelessWidget {
       onPressed: () async {
         SharedPreferences preferences = await SharedPreferences.getInstance();
         preferences.setBool("isViewed", true);
-        context.go(Routs.signup);
+        context.go(Routs.login);
         print(
           preferences.getBool("isViewed"),
         );

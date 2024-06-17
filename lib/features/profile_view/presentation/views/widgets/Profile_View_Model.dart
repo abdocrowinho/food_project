@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_icon_class/font_awesome_icon_class.dart';
 import 'package:food_project/core/utils/routs.dart';
+import 'package:food_project/features/auth/takeImage_View/view_model/cubit/Take_image_Cubit/take_image_cubit.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -45,7 +47,9 @@ class ProfileViewModel {
         GoRouter.of(context).push(Routs.home);
       },
       //Order History
-      () {},
+      () {
+        print(" Url is : " "${BlocProvider.of<TakeImageCubit>(context).url}");
+      },
       //Cars
       () {},
       // Notification

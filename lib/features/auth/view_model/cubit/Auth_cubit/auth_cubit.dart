@@ -28,7 +28,6 @@ class AuthCubit extends Cubit<AuthState> {
           .createUserWithEmailAndPassword(
               email: emailEditingController.text,
               password: passworEditingController.text);
-      addUserToFireBase();
       emit(RegisterSuccsess());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -49,7 +48,6 @@ class AuthCubit extends Cubit<AuthState> {
           password: logPassworEditingController.text);
       SharedPreferences pref = await SharedPreferences.getInstance();
       pref.setBool('isLogedIn', true);
-      AuthRepoImpl().getUserFromdFireBase(_userCredential!.user!.uid);
       emit(SignInSuccess());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -63,9 +61,9 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  void addUserToFireBase() {
+  void addUserToFireBase(String? path) {
     final userModel = UserModel(
-        name: userName.text, email: emailEditingController.text, img: img.text);
+        name: userName.text, email: emailEditingController.text, img: path);
     AuthRepoImpl().saveUserToFirestore(userModel);
   }
 }

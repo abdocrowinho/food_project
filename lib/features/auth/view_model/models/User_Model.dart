@@ -7,9 +7,13 @@ class UserModel {
   UserModel({
     required this.name,
     required this.email,
-    this.img,
+    required this.img,
     this.userId,
   });
+  UserModel.updateimg(String this.img)
+      : name = '',
+        email = '',
+        userId = null;
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{

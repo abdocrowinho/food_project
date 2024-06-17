@@ -3,13 +3,17 @@ import 'package:food_project/core/utils/colors.dart';
 
 class CustomTextFromFieldEmail extends StatelessWidget {
   const CustomTextFromFieldEmail(
-      {super.key, required this.textcontroller, required this.onChanged});
+      {super.key,
+      required this.textcontroller,
+      required this.onChanged,
+      this.onSaved});
   final void Function(String)? onChanged;
   final TextEditingController textcontroller;
-
+  final void Function(String?)? onSaved;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onSaved: onSaved,
       validator: emailValidtion,
       controller: textcontroller,
       cursorHeight: 25,

@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_project/features/profile_view/presentation/view_model/cubits/profile_cupits/profile_cubit.dart';
 import 'package:food_project/features/profile_view/presentation/views/widgets/CustomProfileInformtion.dart';
 import 'package:food_project/features/profile_view/presentation/views/widgets/CustomProfileOptions.dart';
 
@@ -20,13 +22,16 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
     return SafeArea(
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-        child: const Column(
+        child: Column(
           children: [
-            CustomProfileInformtion(),
-            SizedBox(
+            BlocProvider(
+              create: (context) => ProfileCubit(),
+              child: const CustomProfileInformtion(),
+            ),
+            const SizedBox(
               height: 50,
             ),
-            CustomProfileOptions()
+            const CustomProfileOptions()
           ],
         ),
       ),

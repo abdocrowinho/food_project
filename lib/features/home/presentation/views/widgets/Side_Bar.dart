@@ -1,8 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_project/core/utils/colors.dart';
-import 'package:food_project/features/auth/data/web_Services/AuthRepoImpl.dart';
 import 'package:food_project/features/home/presentation/views/widgets/List_of_options_for_SideBar.dart';
 
 class CustomSideBar extends StatefulWidget {
@@ -16,12 +14,13 @@ class CustomSideBar extends StatefulWidget {
 
 class _CustomSideBarState extends State<CustomSideBar> {
   String username = ' ';
-  String Email = '';
+  String email = '';
+  String img = '';
 
   @override
   void initState() {
     setState(() {});
-    getdataFromFireBase();
+
     super.initState();
   }
 
@@ -52,7 +51,7 @@ class _CustomSideBarState extends State<CustomSideBar> {
                           fontSize: 20),
                     ),
                     subtitle: Text(
-                      Email,
+                      email,
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 16),
                     ),
@@ -68,15 +67,5 @@ class _CustomSideBarState extends State<CustomSideBar> {
         ],
       ),
     );
-  }
-
-  void getdataFromFireBase() async {
-    final user = FirebaseAuth.instance.currentUser;
-    final userId = user!.uid;
-    final userData = await AuthRepoImpl().getUserFromdFireBase(userId);
-    setState(() {
-      username = userData.name;
-      Email = userData.email;
-    });
   }
 }

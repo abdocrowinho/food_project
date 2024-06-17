@@ -7,4 +7,5 @@ abstract class Routs {
   static const details = '/details';
   static const catgory = '/Category';
   static const takeimage = '/takeImage';
+  static const profile = '/profile';
 }

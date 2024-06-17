@@ -1,14 +1,11 @@
-import 'dart:io';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_project/features/auth/takeImage_View/view_model/cubit/Take_image_Cubit/take_image_cubit.dart';
+import 'package:food_project/features/auth/takeImage_View/widgets/Accepte_Button.dart';
 import 'package:food_project/features/auth/takeImage_View/widgets/Camera&Gallery_Buttons.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:path/path.dart' as p;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_project/core/utils/colors.dart';
 import 'package:food_project/features/auth/view_model/cubit/Auth_cubit/auth_cubit.dart';
-import 'package:image_picker/image_picker.dart';
 
 class TakeImageBody extends StatefulWidget {
   const TakeImageBody({super.key});
@@ -18,8 +15,8 @@ class TakeImageBody extends StatefulWidget {
 }
 
 class _TakeImageBodyState extends State<TakeImageBody> {
+  TextEditingController img = TextEditingController();
   String Pathimage = "assets/TakeAPohto.png";
-  File? _file;
   bool profileLoadig = false;
   @override
   Widget build(BuildContext context) {
@@ -44,14 +41,15 @@ class _TakeImageBodyState extends State<TakeImageBody> {
           ),
           BlocConsumer<TakeImageCubit, TakeImageState>(
             listener: (context, state) {
-              if (state is NotNull) {
-                TakeImageCubitUsage.Pathimage = state.pathImage;
-              }
+              // if (state is NotNull) {
+              //   TakeImageCubitUsage.defultimage = state.pathImage;
+              // }
             },
             builder: (context, state) {
               if (state is Loading) {
                 return const CircularProgressIndicator();
-              } else if (state is NotNull) {
+              }
+              if (state is NotNull) {
                 return ClipOval(
                   child: SizedBox(
                     height: 144.h,
@@ -64,7 +62,7 @@ class _TakeImageBodyState extends State<TakeImageBody> {
                 );
               } else {
                 return CircleAvatar(
-                  backgroundImage: AssetImage(TakeImageCubitUsage.Pathimage),
+                  backgroundImage: AssetImage(TakeImageCubitUsage.defultimage),
                   radius: 72,
                   backgroundColor: MyColors.backgroundItems,
                 );
@@ -74,7 +72,11 @@ class _TakeImageBodyState extends State<TakeImageBody> {
           SizedBox(
             height: 15.h,
           ),
-          const CameraAndGalleryButtons()
+          const CameraAndGalleryButtons(),
+          const SizedBox(
+            height: 30,
+          ),
+          AccepteButton(),
         ],
       ),
     );

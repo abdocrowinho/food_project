@@ -1,12 +1,14 @@
-import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_project/features/auth/view_model/cubit/Auth_cubit/auth_cubit.dart';
-import 'package:path/path.dart' as p;
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:food_project/features/auth/data/web_Services/AuthRepoImpl.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_project/core/utils/colors.dart';
+import 'package:food_project/core/utils/routs.dart';
+import 'package:food_project/features/profile_view/presentation/view_model/cubits/profile_cupits/profile_cubit.dart';
+import 'package:food_project/features/profile_view/presentation/views/widgets/name_and_email.dart';
+import 'package:food_project/features/profile_view/presentation/views/widgets/optionsForNewImages.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomProfileInformtion extends StatefulWidget {
   const CustomProfileInformtion({
@@ -19,77 +21,87 @@ class CustomProfileInformtion extends StatefulWidget {
 }
 
 class _CustomProfileInformtionState extends State<CustomProfileInformtion> {
-  File? _file;
-  String url = '';
-
-  getImage() async {
-    ImagePicker _imagePickerFormGallry = ImagePicker();
-    final XFile? imagegallry =
-        await _imagePickerFormGallry.pickImage(source: ImageSource.camera);
-    if (imagegallry == null) {
-      return null;
-    }
-    _file = File(imagegallry.path);
-    UploadTask? uploadTask;
-    var pathimage = p.basename(imagegallry.path);
-    var ref = FirebaseStorage.instance.ref(pathimage);
-    uploadTask = ref.putData(await _file!.readAsBytes());
-    BlocProvider.of<AuthCubit>(context).img.text =
-        await (await uploadTask).ref.getDownloadURL();
-
-    setState(() {});
-  }
-
-  String _currentUserName = '';
-  String _currentUserEmail = '';
-
-  @override
-  void initState() {
-    getCurrentUserData();
-    super.initState();
-  }
-
+  bool imageOptions = false;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        InkWell(
-          onTap: () async {
-            await getImage();
-          },
-          child: CircleAvatar(
-            radius: 60,
-            backgroundImage: AssetImage("assets/profilepicture.jpg"),
-          ),
-        ),
-        Expanded(
-          child: ListTile(
-            titleAlignment: ListTileTitleAlignment.center,
-            title: Text(
-              _currentUserName,
-              textAlign: TextAlign.center,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-            subtitle: Text(
-              _currentUserEmail,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 16),
-            ),
-          ),
-        )
-      ],
+    return Stack(clipBehavior: Clip.none, children: [
+      StreamBuilder<DocumentSnapshot>(
+        stream: streamSnapShot(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (snapshot.hasError) {
+            return const Center(child: Text("Error fetcing Data"));
+          }
+          if (!snapshot.hasData || !snapshot.data!.exists) {
+            return const Center(child: Text("no Data Available"));
+          }
+          var UserData = snapshot.data!.data() as Map<String, dynamic>;
+          String userName = UserData["name"];
+          String email = UserData["email"];
+          String? profilePicture = UserData["img"];
+          return Row(
+            children: [
+              BlocProvider<ProfileCubit>(
+                  create: (context) => ProfileCubit(),
+                  child: InkWell(
+                    onLongPress: () => setState(() {
+                      imageOptions = !imageOptions;
+                    }),
+                    onTap: () async {
+                      setState(() {
+                        if (imageOptions == true) {
+                          imageOptions = false;
+                        } else {
+                          context.go(Routs.home);
+                        }
+                      });
+                    },
+                    child: BlocBuilder<ProfileCubit, ProfileState>(
+                      builder: (context, state) {
+                        if (state is ProfileImageLoading) {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        } else if (state is ProfileImageFaliure) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(state.errorMessage),
+                            ),
+                          );
+                          return Container();
+                        } else if (state is ProfileImageStay) {
+                          return profilePic(profilePicture);
+                        } else {
+                          return profilePic(profilePicture);
+                        }
+                      },
+                    ),
+                  )),
+              NameAndEmail(userName: userName, email: email)
+            ],
+          );
+        },
+      ),
+      imageOptions ? const OptionsForNewImage() : Container()
+    ]);
+  }
+
+  CircleAvatar profilePic(String? profilePicture) {
+    return CircleAvatar(
+      radius: 55.sp,
+      backgroundImage: profilePicture != null
+          ? Image.network(profilePicture).image
+          : Image.asset("assets/TakeAPohto.png").image,
     );
   }
 
-  void getCurrentUserData() async {
-    final user = FirebaseAuth.instance.currentUser;
-    final userId = user!.uid;
-
-    final Userdata = await AuthRepoImpl().getUserFromdFireBase(userId);
-
-    setState(() {
-      _currentUserName = Userdata.name;
-      _currentUserEmail = Userdata.email;
-    });
+  Stream<DocumentSnapshot<Object?>> streamSnapShot() {
+    return FirebaseFirestore.instance
+        .collection("users")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .snapshots();
   }
 }
