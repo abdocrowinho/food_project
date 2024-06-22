@@ -3,17 +3,16 @@ class UserModel {
   String email;
   String? img;
   String? userId;
+  String? gender;
+  String? birthDate;
 
-  UserModel({
-    required this.name,
-    required this.email,
-    required this.img,
-    this.userId,
-  });
-  UserModel.updateimg(String this.img)
-      : name = '',
-        email = '',
-        userId = null;
+  UserModel(
+      {required this.name,
+      required this.email,
+      required this.img,
+      this.userId,
+      this.gender,
+      this.birthDate});
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{

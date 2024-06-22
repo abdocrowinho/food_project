@@ -13,6 +13,7 @@ import 'package:food_project/features/home/presentation/views/widgets/Catgory_mo
 import 'package:food_project/features/on_boarding/onboarding_view.dart';
 import 'package:food_project/features/profile_view/presentation/view_model/cubits/profile_cupits/profile_cubit.dart';
 import 'package:food_project/features/profile_view/presentation/views/Profile_view.dart';
+import 'package:food_project/features/profile_view/presentation/views/widgets/options/EditProfile.dart';
 import 'package:food_project/features/splach_view/view/splash_Screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -72,6 +73,13 @@ abstract class AppRouter {
         builder: (context, state) => BlocProvider(
           create: (context) => TakeImageCubit(),
           child: const TakeImageVirw(),
+        ),
+      ),
+      GoRoute(
+        path: Routs.editProfile,
+        builder: (context, state) => BlocProvider(
+          create: (context) => ProfileCubit(),
+          child: const EditProfileView(),
         ),
       ),
     ],

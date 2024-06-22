@@ -8,4 +8,5 @@ abstract class Routs {
   static const catgory = '/Category';
   static const takeimage = '/takeImage';
   static const profile = '/profile';
+  static const editProfile = "/editProfile";
 }

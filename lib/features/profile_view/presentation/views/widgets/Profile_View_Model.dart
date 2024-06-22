@@ -44,7 +44,7 @@ class ProfileViewModel {
     List<VoidCallback> onTap = [
       // Edit Profile
       () {
-        GoRouter.of(context).push(Routs.home);
+        GoRouter.of(context).push(Routs.editProfile);
       },
       //Order History
       () {

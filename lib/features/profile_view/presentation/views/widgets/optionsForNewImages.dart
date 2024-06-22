@@ -7,13 +7,16 @@ import 'package:food_project/features/profile_view/presentation/view_model/cubit
 class OptionsForNewImage extends StatelessWidget {
   const OptionsForNewImage({
     super.key,
+    this.top,
+    this.left,
   });
-
+  final double? top;
+  final double? left;
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: 20,
-      left: 15,
+      top: top ?? 20,
+      left: left ?? 15,
       child: Container(
         decoration: BoxDecoration(color: MyColors.kContainercolor),
         child: Column(
